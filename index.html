@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Magic 8 Ball</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="container">
+      <h1>Magic 8 Ball</h1>
+      <div id="question">
+        What do you want to know about your future?
+      </div>
+      <input type="text" id="userQuestion" placeholder="Ask a yes/no question">
+      <button onclick="askMagic8Ball()">Ask</button>
+      <div id="answer"></div>
+      <img id="image" src="images/eight.jpeg" alt="Magic 8 Ball">
+    </div>
+  
+    <script>
+      function askMagic8Ball() {
+        const question = document.getElementById('userQuestion').value;
+        const answer = document.getElementById('answer');
+        const image = document.getElementById('image');
+        const responses = [
+          "It is certain, you have a good reason to smile",
+          "Take care of yourself, things will be going well if you do so",
+          "Take a risk, it's good time for adventure",
+          "You should try something different",
+          "No, it won't work. Good time to change your mind",
+          "The universe is looking at you. Things are going to be good",
+          "You must wait, now it's not the time for that",
+          "It won't be as you expect",
+          
+        ];
+        
+        const responseImages = {
+         "It is certain, you have a good reason to smile": "images/smile.jpeg",
+         "Take care of yourself, things will be going well if you do so": "images/health.jpeg",
+          "Take a risk, it's good time for adventure": "images/adventure.jpeg",
+          "You should try something different":"images/change.jpeg",
+          "No, it won't work. Good time to change your mind":"images/death.jpeg",
+          "The universe is looking at you. Things are going to be good":'images/universe.jpeg',
+          "You must wait, now it's not the time for that":"images/wait.jpeg",
+          "It won't be as you expect":"images/bad.jpeg",
+
+          
+        };
+        
+        if (question.trim() !== "") { 
+        const randomIndex = Math.floor(Math.random() * responses.length);
+        const randomResponse = responses[randomIndex];
+        answer.textContent = randomResponse;
+
+     
+        const responseImage = responseImages[randomResponse];
+
+   
+        image.src = responseImage || "images/eight.jpeg"; 
+      } else {
+        answer.textContent = "Please enter a question."; 
+        image.src = "images/eight.jpeg"; 
+      }
+      }
+    </script>
+  </body>
+  
+</html>
